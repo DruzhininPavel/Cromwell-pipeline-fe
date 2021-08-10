@@ -1,4 +1,4 @@
-# vue-3-authentication-jwt
+# Cromwell pipeline Front End
 
 ## Project setup
 ```
