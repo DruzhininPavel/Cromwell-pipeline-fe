@@ -9,6 +9,7 @@
             <p class="card-text">RepositoryId: {{ project.repositoryId }}</p>
             <p class="card-text">Version: {{ project.version }}</p>
             <p class="card-text">Visibility: {{ project.visibility }}</p>
+            <router-link :to="'/projects/' + project.projectId + '/files/upload'" class="btn btn-primary btn-block">Files</router-link>
             <router-link :to="'/projects/' + project.projectId + '/configuration'" class="btn btn-primary btn-block">Configuration</router-link>
             <router-link :to="'/projects/' + project.projectId + '/runs'" class="btn btn-primary btn-block">Runs</router-link>
             <router-link :to="'/projects/' + project.projectId + '/edit'" class="btn btn-primary btn-block">Rename</router-link>
@@ -17,6 +18,7 @@
                             class="spinner-border spinner-border-sm"
                         ></span>
                         <span>Deactivate</span></button>
+                        <router-link to="/projects">Back</router-link>
             
         </div>
     </div>

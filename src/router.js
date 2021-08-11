@@ -8,12 +8,13 @@ const ProjectDetails = () => import("./components/projects/ProjectDetails.vue")
 const Profile = () => import("./components/profile/Profile.vue")
 const EditProfile = () => import("./components/profile/EditProfile.vue")
 const ChangePassword = () => import("./components/profile/ChangePassword.vue")
-const ProjectConfiguration = () => import("./components/projects/ProjectConfiguration.vue")
+const ConfigurationDetail = () => import("./components/projectConfiguration/ConfigurationDetail.vue")
 const ProjectAdd = () => import("./components/projects/ProjectAdd.vue")
 const ProjectEditName = () => import("./components/projects/ProjectEditName.vue")
 const BoardProjects = () => import("./components/BoardProjects.vue")
 const BoardUser = () => import("./components/BoardUser.vue")
-const validateFile = () => import("./components/configurationFiles/ValidateFile.vue")
+const ValidateFile = () => import("./components/configurationFiles/ValidateFile.vue")
+const UploadFile = () => import("./components/configurationFiles/UploadFile.vue")
 
 const routes = [
   {
@@ -55,7 +56,7 @@ const routes = [
     path: "/projects/:projectId/configuration",
     name: "configuration",
     // lazy-loaded
-    component: ProjectConfiguration,
+    component: ConfigurationDetail,
   },
   {
     path: "/projects/:projectId",
@@ -91,7 +92,13 @@ const routes = [
     path: "/files/validate",
     name: "validate-file",
     // lazy-loaded
-    component: validateFile,
+    component: ValidateFile,
+  },
+  {
+    path: "/projects/:projectId/files/upload",
+    name: "upload-file",
+    // lazy-loaded
+    component: UploadFile,
   },
 ];
 

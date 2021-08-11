@@ -1,27 +1,27 @@
 import axios from 'axios';
 import authHeader from './auth-header';
 
-const API_URL = 'http://localhost:8080/';
+const API_URL = 'http://localhost:8080/projects';
 
 class ProjectService {
   getProjectsContent() {
-    return axios.get(API_URL + 'projects', { headers: authHeader() });
+    return axios.get(API_URL, { headers: authHeader() });
   }
 
   getProjectContent(projectId) {
-    return axios.get(API_URL + 'projects?name=' + projectId, { headers: authHeader() });
+    return axios.get(API_URL + '/' + projectId, { headers: authHeader() });
   }
 
   addProject(data) {
-    return axios.post(API_URL + 'projects', data, { headers: authHeader() });
+    return axios.post(API_URL, data, { headers: authHeader() });
   }
 
   editProject(projectId, data) {
-    return axios.put(API_URL + 'projects/' + projectId, data, { headers: authHeader() });
+    return axios.put(API_URL + '/' + projectId, data, { headers: authHeader() });
   }
 
   deleteProject(projectId) {
-    return axios.delete(API_URL + 'projects/' + projectId, { headers: authHeader() });
+    return axios.delete(API_URL + '/' + projectId, { headers: authHeader() });
   }
 }
 

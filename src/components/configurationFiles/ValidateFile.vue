@@ -60,18 +60,18 @@ export default {
     methods: {
         handleValidateFile(data) {
             this.loading = true;
-
+            this.message = "";
+            this.success = "";
             FileService.validateFile(data).then(
-                () => {
+                (response) => {
                     this.loading = false;
-                    this.success = "OK!"
+                    this.success = response.data
                 },
                 (error) => {
                     this.loading = false;
                     this.message =
                         (error.response &&
-                        error.response.data &&
-                        error.response.data.message) ||
+                        error.response.data ) ||
                         error.message ||
                         error.toString();
                 }

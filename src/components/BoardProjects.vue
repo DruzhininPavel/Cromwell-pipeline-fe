@@ -3,7 +3,7 @@
     <header class="jumbotron">
       <div v-if="Array.isArray(content)">
         <div v-for="project in content" :key="project">
-          <project :project="project"></project>
+          <Project :project="project"></Project>
         </div>  
       </div>
       <div v-else> 
