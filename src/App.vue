@@ -14,6 +14,9 @@
         <li class="nav-item">
           <router-link v-if="currentUser" to="/users" class="nav-link">Users</router-link>
         </li>
+        <li class="nav-item">
+          <router-link v-if="currentUser" to="/files/validate" class="nav-link">Validate File</router-link>
+        </li>
       </div>
 
       <div v-if="!currentUser" class="navbar-nav ml-auto">

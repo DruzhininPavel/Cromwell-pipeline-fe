@@ -50,21 +50,22 @@ export default {
     methods: {
         handleDeactivateProject(projectId) {
             this.loading = true;
-            
-            ProjectService.deleteProject(projectId).then(
-                () => {
-                    this.$router.push("/projects");
-                },
-                (error) => {
-                    this.loading = false;
-                    this.message =
-                        (error.response &&
-                        error.response.data &&
-                        error.response.data.message) ||
-                        error.message ||
-                        error.toString();
-                }
-            );
+            if(confirm("Do you really want to deactivate project?")){
+                ProjectService.deleteProject(projectId).then(
+                    () => {
+                        this.$router.push("/projects");
+                    },
+                    (error) => {
+                        this.message =
+                            (error.response &&
+                            error.response.data &&
+                            error.response.data.message) ||
+                            error.message ||
+                            error.toString();
+                    }
+                );
+            }
+            this.loading = false;
         }
     },
 };

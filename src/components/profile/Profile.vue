@@ -9,6 +9,7 @@
         <p class="card-text">Last  Name: {{userData[0].lastName}}</p>
         <router-link to="/profile/edit" class="btn btn-primary btn-block">Edit Profile</router-link>
         <router-link to="/profile/password" class="btn btn-primary btn-block">Change Password</router-link>
+        <button class="btn btn-secondary btn-block" @click="handleDeactivateProfile">Deactivate Profile</button>
       </div>
     </div>
   </div>
@@ -47,6 +48,25 @@ export default {
   mounted() {
     if (!this.currentUser) {
       this.$router.push('/login');
+    }
+  },
+  methods: {
+    handleDeactivateProfile() {
+      if(confirm("Do you really want to deactivate profile?")){
+        UserService.deleteRofile()
+          .then(() => {
+              this.$router.push("/logout")
+          })
+          .catch(error => {
+              this.userData =
+                (error.response &&
+                    error.response.data &&
+                    error.response.data.message) ||
+                error.message ||
+                error.toString();
+          }
+        )
+      }
     }
   }
 };

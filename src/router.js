@@ -13,6 +13,7 @@ const ProjectAdd = () => import("./components/projects/ProjectAdd.vue")
 const ProjectEditName = () => import("./components/projects/ProjectEditName.vue")
 const BoardProjects = () => import("./components/BoardProjects.vue")
 const BoardUser = () => import("./components/BoardUser.vue")
+const validateFile = () => import("./components/configurationFiles/ValidateFile.vue")
 
 const routes = [
   {
@@ -86,6 +87,12 @@ const routes = [
     // lazy-loaded
     component: BoardUser,
   },
+  {
+    path: "/files/validate",
+    name: "validate-file",
+    // lazy-loaded
+    component: validateFile,
+  },
 ];
 
 const router = createRouter({
@@ -105,7 +112,6 @@ router.beforeEach((to, from, next) => {
     } else if(authRequired && loggedIn && JSON.parse(loggedIn).tokenExpiration < (Date.now()/1000)){
       AuthService.refreshToken();
     }
-
     next();
   });
 

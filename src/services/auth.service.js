@@ -38,23 +38,25 @@ class AuthService {
 
   refreshToken() {
     let user = JSON.parse(localStorage.getItem('user'))
-    axios.get(API_URL + 'refresh?refreshToken=' + user.refreshToken, { headers: authHeader() })
-      .then(response => {
-        if (response.data == "OK") {
-          user.accessToken = response.headers['access-token']
-          user.refreshToken = response.headers['refresh-token']
-          user.tokenExpiration = response.headers['access-token-expiration']
+    if(user.tokenExpiration && user.tokenExpiration < (Date.now()/1000)) {
+      axios.get(API_URL + 'refresh?refreshToken=' + user.refreshToken, { headers: authHeader() })
+        .then(response => {
+          if (response.data == "OK") {
+            user.accessToken = response.headers['access-token']
+            user.refreshToken = response.headers['refresh-token']
+            user.tokenExpiration = response.headers['access-token-expiration']
 
-          localStorage.setItem('user', JSON.stringify(user));
+            localStorage.setItem('user', JSON.stringify(user));
+          }
+
+          return user;
+        }).catch( error => {
+          console.log(error);
+          localStorage.removeItem('user');
         }
-
-        return user;
-      }).catch( error => {
-        console.log(error);
-        localStorage.removeItem('user');
-      }
-
       );
+    }
+    this.$router.push("/login")
   }
 }
 
