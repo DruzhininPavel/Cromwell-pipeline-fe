@@ -1,7 +1,6 @@
 <template>
 <div class="container">
   <div class="row justify-content-md-center">
-    <div class="col-md-4">
       <div class="card card-container">
         <img
           id="profile-img"
@@ -37,7 +36,6 @@
           </div>
         </Form>
       </div>
-    </div>
   </div>
 </div>
 </template>

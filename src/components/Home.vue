@@ -1,26 +1,52 @@
 <template>
   <div class="container">
-    <div class="card" style="width: 18rem;">
-      <div class="card-body">
-        <h5 class="card-title">Projects</h5>
-        <h6 class="card-subtitle mb-2 text-muted">Projects Area</h6>
-        <p class="card-text">At this place we can manage our projects</p>
-        <router-link to="/projects" class="card-link">Projects</router-link>
+    <h1 class="display-4">Projects</h1>
+    <hr class="my-4">
+    <ul class="list-group list-group-flush">
+      <div div v-if="Array.isArray(content)">
+        <div v-for="project in content" :key="project.name">
+          <Project :project="project"></Project>
+        </div>  
       </div>
-    </div>
-    <div class="card" style="width: 18rem;">
-      <div class="card-body">
-        <h5 class="card-title">User Profile</h5>
-        <h6 class="card-subtitle mb-2 text-muted">User Profile Area</h6>
-        <p class="card-text">At this place we can manage our user profile</p>
-        <router-link to="/profile" class="card-link">User Profile</router-link>
+      <div v-else> 
+        <p>Projects not found </p>
       </div>
-    </div>
+    </ul>
+    <hr class="display-4">
+    <router-link to="/projects/add" class="btn btn-primary btn-block" >
+      <span>Add Project</span>
+    </router-link>
   </div>
 </template>
 
 <script>
+import ProjectService from "../services/project.service";
+import Project from "./projects/Project"
+
 export default {
-  name: "Home"
+  name: "Home",
+  components: {
+    Project
+  },
+  data() {
+    return {
+      content: null,
+    };
+  },
+  mounted() {
+    ProjectService.getProjectsContent().then(
+      (response) => {
+        this.content = response.data;
+      },
+      (error) => {
+        this.content =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
+      }
+    );
+  },
 };
 </script>

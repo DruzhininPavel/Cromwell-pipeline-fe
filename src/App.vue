@@ -2,7 +2,19 @@
   <div id="app">
     <NavBar></NavBar>
     <div class="container">
-      <router-view />
+      <div class="row">
+        <div class="col-sm">
+
+        </div>
+        <div class="col-sm">
+          <router-view />
+        </div>
+        <div class="col-sm">
+
+        </div>
+      </div>
+
+      
     </div>
   </div>
 </template>

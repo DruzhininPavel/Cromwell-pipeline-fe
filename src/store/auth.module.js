@@ -36,6 +36,10 @@ export const auth = {
           return Promise.reject(error);
         }
       );
+    },
+    refreshToken({ commit }) {
+      AuthService.refreshToken();
+      commit('')
     }
   },
   mutations: {
@@ -56,6 +60,14 @@ export const auth = {
     },
     registerFailure(state) {
       state.status.loggedIn = false;
-    }
+    },
+    refreshTokenSuccess(state) {
+      state.status.loggedIn = true;
+    },
+    refreshTokenFailure(state) {
+      state.status.loggedIn = false;
+      state.user = null;
+    },
+
   }
 };

@@ -1,11 +1,11 @@
 <template>
   <div v-if="project" class="container">
+      <h1 class="dicplay-4">{{ project.name }}</h1>
       <div class="card">
         <div class="card-body">
-            <h5 class="card-title">{{ project.name }}</h5>
             <h6 class="card-subtitle mb-2 text-muted">ID: {{ project.projectId }}</h6>
             <p class="card-text">OwnerID: {{ project.ownerId }}</p>
-            <p class="card-text">Acative: {{ project.active }}</p>
+            <p class="card-text">Active: {{ project.active }}</p>
             <p class="card-text">RepositoryId: {{ project.repositoryId }}</p>
             <p class="card-text">Version: {{ project.version }}</p>
             <p class="card-text">Visibility: {{ project.visibility }}</p>
