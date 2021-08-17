@@ -23,7 +23,7 @@
                         <span>Validate</span>
                         </a>
                     </div>
-                    <div class="form-group">
+                    <div v-if="!isFileUploaded" class="form-group">
                         <button class="btn btn-primary btn-block" :disabled="loading">
                         <span
                             v-show="loading"
@@ -31,6 +31,15 @@
                         ></span>
                         <span>Upload</span>
                         </button>
+                    </div>
+                    <div v-if="isFileUploaded" class="form-group" >
+                        <a @click="handleBuildConfig" class="btn btn-primary btn-block" :disabled="loading">
+                        <span
+                            v-show="loading"
+                            class="spinner-border spinner-border-sm"
+                        ></span>
+                        <span>BuildConfiguration</span>
+                        </a>
                     </div>
                     <div class="form-group">
                         <div v-if="success" class="alert alert-success" role="alert">
@@ -43,7 +52,6 @@
                         </div>
                     </div>
                     <Field as="hidden" id="projectId" name="projectId" :value="this.projectId" />
-                    <Field as="hidden" id="version" name="version" value="v0.0.4" />
                 </Form>
             </div>
         </div>
@@ -66,7 +74,6 @@ export default {
             path: yup.string().required("Shold be filled"),
             content: yup.string().required("Shold be filled"),
             projectId: yup.string().required("Shold be filled"),
-            version: yup.string().required("Shold be filled"),
         });
 
         return {
@@ -77,6 +84,7 @@ export default {
             projectId: this.$route.params.projectId,
             projectVersion: "",
             contentFile: "",
+            isFileUploaded: false
         };
     },
     methods: {
@@ -87,7 +95,7 @@ export default {
             FileService.validateFile({content: this.contentFile}).then(
                 () => {
                     this.loading = false;
-                    this.success = "OK!"
+                    this.success = "Validated"
                 },
                 (error) => {
                     this.loading = false;
@@ -104,18 +112,18 @@ export default {
             this.loading = true;
             this.success = '';
             this.message = '';
-            let post = {
-                projectId: data.projectId,
-                version: data.version,
+            let uploadRequest = {
                 projectFile: {
                     path: data.path,
                     content: data.content
                 }
             }
-            FileService.uploadFile(post).then(
+            FileService.uploadFile(this.projectId, uploadRequest).then(
                 () => {
                     this.loading = false;
-                    this.success = "OK!"
+                    this.success = "Uploaded"
+                    localStorage.setItem("lastUploadedFile", JSON.stringify(uploadRequest));
+                    this.isFileUploaded = true;
                 },
                 (error) => {
                     this.loading = false;
@@ -128,6 +136,19 @@ export default {
                 }
             );
         },
+        handleBuildConfig() {
+            let loadedFile = JSON.parse(localStorage.getItem("lastUploadedFile"));
+
+            FileService.buildConfiguration(this.projectId, loadedFile.projectFile.path).then(
+                (response) => {
+                    localStorage.setItem("buildedConfiguration", JSON.stringify(response.data));
+                    this.$router.push('/projects/' + this.projectId + '/files/configure/' + loadedFile.projectFile.path)
+                },
+                (error) => {
+                    console.log(error);
+                }
+            )
+        }
     }
 };
 </script>

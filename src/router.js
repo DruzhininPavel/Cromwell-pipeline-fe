@@ -15,6 +15,7 @@ const BoardProjects = () => import("./components/BoardProjects.vue")
 const BoardUser = () => import("./components/BoardUser.vue")
 const ValidateFile = () => import("./components/configurationFiles/ValidateFile.vue")
 const UploadFile = () => import("./components/configurationFiles/UploadFile.vue")
+const ConfigureFile = () => import("./components/configurationFiles/ConfigureFile.vue")
 
 const routes = [
   {
@@ -99,6 +100,12 @@ const routes = [
     name: "upload-file",
     // lazy-loaded
     component: UploadFile,
+  },
+  {
+    path: "/projects/:projectId/files/configure/:path",
+    name: "configure-file",
+    // lazy-loaded
+    component: ConfigureFile,
   },
 ];
 

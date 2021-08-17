@@ -1,0 +1,21 @@
+{ 
+    "id": "364c43cd-b86f-4c00-a2c2-944c34f33ed7", 
+    "projectId": "a9f38d97-8a7c-43f4-9e0c-c159764b12f8", 
+    "active": true, 
+    "projectFileConfigurations": [ 
+        { 
+            "path": "file.wdl", 
+            "inputs": [ 
+                { 
+                    "name": "test.hello.name", 
+                    "typedValue": { "_type": "String" , "value": "Fedor"} 
+                }, 
+                { 
+                    "name": "test.hello.lastName", 
+                    "typedValue": { "_type": "String" } 
+                } 
+            ] 
+        } 
+    ], 
+    "version": "v3" 
+}

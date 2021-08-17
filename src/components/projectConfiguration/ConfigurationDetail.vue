@@ -5,7 +5,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Configuration</h5>
                     <h6 class="card-subtitle mb-2 text-muted">Project ID: {{ configuration.projectId }}</h6>
-                    <p class="card-text">Acative: {{ configuration.active }}</p>
+                    <p class="card-text">Active: {{ configuration.active }}</p>
                     <p class="card-text">Version: {{ configuration.version }}</p>
                     <p class="card-text">Data: {{ configuration.projectFileConfigurations }}</p>
                     <router-link :to="'/projects/' + configuration.projectId + '/configuration/edit'" class="btn btn-primary btn-block">Edit</router-link>
@@ -15,6 +15,7 @@
             </div>
         </div>
     </div>
+    <router-link :to="'/projects/' + projectId + '/files/upload'" class="btn btn-primary btn-block">Add Configuration</router-link>
 </template>
 
 <script>
@@ -23,6 +24,7 @@ export default {
     name: 'ProjectConfiguration',
     data() {
         return {
+            projectId: this.$route.params.projectId,
             configuration: {},
             loading: false,
 

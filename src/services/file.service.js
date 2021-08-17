@@ -1,27 +1,27 @@
 import axios from 'axios';
 import authHeader from './auth-header';
 
-const API_URL = 'http://localhost:8080/files';
+const API_URL = 'http://localhost:8080/';
 
 class FileService {
   getFile(projectId, path, version) {
-    return axios.get(API_URL + '/' + projectId + '/' + path + version, { headers: authHeader() });
+    return axios.get(API_URL + 'projects/' + projectId + '/files/' + path + version, { headers: authHeader() });
   }
 
   getFiles(projectId, version) {
-    return axios.get(API_URL + '/' + projectId + version, { headers: authHeader() });
+    return axios.get(API_URL + 'projects/' + projectId + '/files' + version, { headers: authHeader() });
   }
 
-  uploadFile(data) {
-    return axios.post(API_URL, data, { headers: authHeader() });
+  uploadFile(projectId, data) {
+    return axios.post(API_URL + 'projects/' + projectId + '/files', data, { headers: authHeader() });
   }
 
-  buildConfiguration(projectId, path, version) {
-    return axios.get(API_URL + '/configurations/' + projectId + '/' + path + version, { headers: authHeader() });
+  buildConfiguration(projectId, path) {
+    return axios.get(API_URL + 'projects/' + projectId + '/files/configurations/' + path, { headers: authHeader() });
   }
 
   validateFile(data) {
-    return axios.post(API_URL + '/validation', data, { headers: authHeader() });
+    return axios.post(API_URL + 'files/validation', data, { headers: authHeader() });
   }
 }
 
