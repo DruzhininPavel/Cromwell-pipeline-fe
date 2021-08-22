@@ -18,7 +18,9 @@ const UploadFile = () => import("./components/configurationFiles/UploadFile.vue"
 const ConfigureFile = () => import("./components/configurationFiles/ConfigureFile.vue")
 const ProjectFiles = () => import("./components/configurationFiles/Files.vue")
 const ProjectFile = () => import("./components/configurationFiles/File.vue")
-
+const ProjectRuns = () => import("./components/runs/Runs.vue")
+const ProjectRunsItem = () => import("./components/runs/RunsItem.vue")
+ 
 const routes = [
   {
     path: "/",
@@ -138,6 +140,20 @@ const routes = [
     meta: {layout: 'main', auth: true},
     // lazy-loaded
     component: ProjectFile,
+  },
+  {
+    path: "/projects/:projectId/runs",
+    name: "project-runs",
+    meta: {layout: 'main', auth: true},
+    // lazy-loaded
+    component: ProjectRuns,
+  },
+  {
+    path: "/projects/:projectId/runs/:runId",
+    name: "project-runs-item",
+    meta: {layout: 'main', auth: true},
+    // lazy-loaded
+    component: ProjectRunsItem,
   },
 ];
 

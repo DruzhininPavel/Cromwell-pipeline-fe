@@ -4,6 +4,11 @@ import authHeader from './auth-header';
 const API_URL = 'http://localhost:8080/runs';
 
 class RunService {
+
+  getRuns() {
+    return axios.get(API_URL, { headers: authHeader() });
+  }
+
   getRun(runId) {
     return axios.get(API_URL + '/' + runId, { headers: authHeader() });
   }
