@@ -23,6 +23,7 @@
             ></span>
             <span>Delete file</span>
         </a>
+        <router-link class="btn btn-danger btn-block" :to="'/projects/' + projectId">Back</router-link>
 
     </div>
 </template>

@@ -1,28 +1,28 @@
 import axios from 'axios';
 import authHeader from './auth-header';
 
-const API_URL = 'http://localhost:8080/runs';
+const API_URL = 'http://localhost:8080/projects/';
 
 class RunService {
 
-  getRuns() {
-    return axios.get(API_URL, { headers: authHeader() });
+  getRuns(projectId) {
+    return axios.get(API_URL + projectId + '/runs', { headers: authHeader() });
   }
 
-  getRun(runId) {
-    return axios.get(API_URL + '/' + runId, { headers: authHeader() });
+  getRun(projectId, runId) {
+    return axios.get(API_URL + projectId + '/runs/' + runId, { headers: authHeader() });
   }
 
-  addRun(data) {
-    return axios.post(API_URL, data, { headers: authHeader() });
+  addRun(projectId, data) {
+    return axios.post(API_URL + projectId + '/runs', data, { headers: authHeader() });
   }
 
-  updateRun(runId, data) {
-    return axios.put(API_URL + '/' + runId, data, { headers: authHeader() });
+  updateRun(projectId, runId, data) {
+    return axios.put(API_URL + projectId + '/runs/' + runId, data, { headers: authHeader() });
   }
 
-  deleteRun(runId) {
-    return axios.delete(API_URL + '/' + runId, { headers: authHeader() });
+  deleteRun(projectId, runId) {
+    return axios.delete(API_URL + projectId + '/runs/' + runId, { headers: authHeader() });
   }
 }
 

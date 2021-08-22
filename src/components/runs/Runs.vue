@@ -13,6 +13,7 @@
                 </div>
             </div>
             <router-link :to="'/projects/' + projectId + '/runs/add'" class="btn btn-primary btn-block">Add new run</router-link>
+            <router-link class="btn btn-danger btn-block" :to="'/projects/' + projectId">Back</router-link>
         </div>
     </div>
 </template>
@@ -26,7 +27,8 @@ export default {
     },
     data() {
         return {
-            runs: null
+            runs: null,
+            projectId: this.$route.params.projectId,
         }
     },
     mounted() {

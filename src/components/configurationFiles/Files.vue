@@ -11,8 +11,12 @@
                 <div v-else> 
                     <p>Files not found </p>
                 </div>
+                <hr>
+                <router-link :to="'/projects/' + projectId + '/files/upload'" class="btn btn-primary btn-block">Upload new file</router-link>
+                <hr>
+                <router-link class="btn btn-danger" :to="'/projects/' + projectId">Back</router-link>
             </div>
-            <router-link :to="'/projects/' + projectId + '/files/upload'" class="btn btn-primary btn-block">Upload new file</router-link>
+            
         </div>
     </div>
 </template>
@@ -29,10 +33,11 @@ export default {
         return {
             loading: false,
             files: null,
+            projectId: this.$route.params.projectId
         };
     },
     mounted() {
-        FileService.getFiles(this.$route.params.projectId).then(
+        FileService.getFiles(this.projectId).then(
         (response) => {
             this.files = response.data;
         },

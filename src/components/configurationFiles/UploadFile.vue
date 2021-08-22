@@ -41,6 +41,7 @@
                         <span>BuildConfiguration</span>
                         </a>
                     </div>
+                    <router-link class="btn btn-danger btn-block" :to="'/projects/' + projectId">Back</router-link>
                     <div class="form-group">
                         <div v-if="success" class="alert alert-success" role="alert">
                         {{ success }}

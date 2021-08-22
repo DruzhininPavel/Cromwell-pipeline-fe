@@ -13,13 +13,13 @@
             <router-link :to="'/projects/' + project.projectId + '/configuration'" class="btn btn-primary btn-block">Configuration</router-link>
             <router-link :to="'/projects/' + project.projectId + '/runs'" class="btn btn-danger btn-block">Runs</router-link>
             <router-link :to="'/projects/' + project.projectId + '/edit'" class="btn btn-primary btn-block">Rename</router-link>
-            <button @click="handleDeactivateProject" class="btn btn-secondary btn-block" :disabled="loading"><span
-                            v-show="loading"
-                            class="spinner-border spinner-border-sm"
-                        ></span>
-                        <span>Deactivate</span></button>
-                        <router-link to="/projects">Back</router-link>
-            
+            <button @click="handleDeactivateProject" class="btn btn-secondary btn-block" :disabled="loading">
+                <span
+                    v-show="loading"
+                    class="spinner-border spinner-border-sm"
+                    ></span>
+                <span>Deactivate</span>
+            </button>
         </div>
     </div>
   </div>

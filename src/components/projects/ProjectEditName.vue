@@ -25,7 +25,9 @@
                         </div>
                     </div>
                 </Form>
+                <router-link class="btn btn-danger" :to="'/projects/' + projectId">Cancel</router-link>
             </div>
+            
         </div>
     </div>
 </template>

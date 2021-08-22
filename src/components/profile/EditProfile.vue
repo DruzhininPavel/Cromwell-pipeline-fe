@@ -30,7 +30,9 @@
                             <span>Submitt</span>
                             </button>
                         </div>
-
+                        <div class="form-group">
+                            <router-link class="btn btn-danger btn-block" :to="'/profile/'">Cancel</router-link>
+                        </div>
                         <div class="form-group">
                             <div v-if="message" class="alert alert-danger" role="alert">
                             {{ message }}

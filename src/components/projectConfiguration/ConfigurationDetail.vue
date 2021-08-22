@@ -10,12 +10,12 @@
                     <p class="card-text">Data: {{ configuration.projectFileConfigurations }}</p>
                     <router-link :to="'/projects/' + configuration.projectId + '/configuration/edit'" class="btn btn-primary btn-block">Edit</router-link>
                     <a @click="hanleDeactivateConfiguration" class="btn btn-secondary btn-block" :disabled="loading">Deactivate</a>
-                    <router-link :to="'/projects/' + configuration.projectId">Back</router-link>
                 </div>
             </div>
         </div>
     </div>
     <router-link :to="'/projects/' + projectId + '/files/upload'" class="btn btn-primary btn-block">Add Configuration</router-link>
+    <router-link class="btn btn-danger btn-block" :to="'/projects/' + projectId">Back</router-link>
 </template>
 
 <script>
