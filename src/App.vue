@@ -1,29 +1,20 @@
 <template>
   <div id="app">
-    <NavBar></NavBar>
-    <div class="container">
-      <div class="row">
-        <div class="col-sm">
-
-        </div>
-        <div class="col-sm">
-          <router-view />
-        </div>
-        <div class="col-sm">
-
-        </div>
-      </div>
-
-      
-    </div>
+    <component :is="layout"><router-view/></component>
   </div>
 </template>
 
 <script>
-import NavBar from "./components/NavBar.vue"
+import EmptyLayout from './layouts/EmptyLayout'
+import MainLayout from './layouts/MainLayout'
 export default {
+  computed: {
+    layout() {
+      return (this.$route.meta.layout || 'empty') + '-layout'
+    }
+  },
   components: {
-    NavBar
+    EmptyLayout, MainLayout
   }
 };
 </script>

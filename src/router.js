@@ -11,106 +11,139 @@ const ChangePassword = () => import("./components/profile/ChangePassword.vue")
 const ConfigurationDetail = () => import("./components/projectConfiguration/ConfigurationDetail.vue")
 const ProjectAdd = () => import("./components/projects/ProjectAdd.vue")
 const ProjectEditName = () => import("./components/projects/ProjectEditName.vue")
-const BoardProjects = () => import("./components/BoardProjects.vue")
 const BoardUser = () => import("./components/BoardUser.vue")
+const BoardProjects = () => import("./components/BoardProjects.vue")
 const ValidateFile = () => import("./components/configurationFiles/ValidateFile.vue")
 const UploadFile = () => import("./components/configurationFiles/UploadFile.vue")
 const ConfigureFile = () => import("./components/configurationFiles/ConfigureFile.vue")
+const ProjectFiles = () => import("./components/configurationFiles/Files.vue")
+const ProjectFile = () => import("./components/configurationFiles/File.vue")
 
 const routes = [
   {
     path: "/",
     name: "home",
+    meta: {layout: 'main', auth: true},
     component: Home,
   },
   {
     path: "/home",
+    meta: {layout: 'main', auth: true},
     component: Home,
   },
   {
     path: "/login",
+    meta: {layout: 'empty'},
     component: Login,
   },
   {
     path: "/register",
+    meta: {layout: 'empty'},
     component: Register,
   },
   {
     path: "/profile",
     name: "profile",
+    meta: {layout: 'main', auth: true},
     // lazy-loaded
     component: Profile,
   },
   {
     path: "/profile/edit",
     name: "edit-profile",
+    meta: {layout: 'main', auth: true},
     // lazy-loaded
     component: EditProfile,
   },
   {
     path: "/profile/password",
     name: "edit-password",
+    meta: {layout: 'main', auth: true},
     // lazy-loaded
     component: ChangePassword,
   },
   {
     path: "/projects/:projectId/configuration",
     name: "configuration",
+    meta: {layout: 'main', auth: true},
     // lazy-loaded
     component: ConfigurationDetail,
   },
   {
     path: "/projects/:projectId",
     name: "project",
+    meta: {layout: 'main', auth: true},
     // lazy-loaded
     component: ProjectDetails,
   },
   {
     path: "/projects/:projectId/edit",
     name: "project-edit",
+    meta: {layout: 'main', auth: true},
     // lazy-loaded
     component: ProjectEditName,
   },
   {
     path: "/projects/add",
     name: "projects-add",
+    meta: {layout: 'main', auth: true},
     // lazy-loaded
     component: ProjectAdd,
   },
   {
     path: "/projects",
     name: "projects",
+    meta: {layout: 'main', auth: true},
     // lazy-loaded
     component: BoardProjects,
   },
   {
     path: "/users",
     name: "users",
+    meta: {layout: 'main', auth: true},
     // lazy-loaded
     component: BoardUser,
   },
   {
     path: "/files/validate",
     name: "validate-file",
+    meta: {layout: 'main', auth: true},
     // lazy-loaded
     component: ValidateFile,
   },
   {
     path: "/projects/:projectId/files/upload",
     name: "upload-file",
+    meta: {layout: 'main', auth: true},
     // lazy-loaded
     component: UploadFile,
   },
   {
     path: "/projects/:projectId/files/configure/:path",
     name: "configure-file",
+    meta: {layout: 'main', auth: true},
     // lazy-loaded
     component: ConfigureFile,
+  },
+  {
+    path: "/projects/:projectId/files",
+    name: "project-files",
+    meta: {layout: 'main', auth: true},
+    // lazy-loaded
+    component: ProjectFiles,
+  },
+  {
+    path: "/projects/:projectId/files/:path",
+    name: "project-file",
+    meta: {layout: 'main', auth: true},
+    // lazy-loaded
+    component: ProjectFile,
   },
 ];
 
 const router = createRouter({
   history: createWebHistory(),
+  base: process.env.BASE_URL,
   routes,
 });
 

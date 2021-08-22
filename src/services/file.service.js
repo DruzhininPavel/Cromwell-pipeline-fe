@@ -4,12 +4,12 @@ import authHeader from './auth-header';
 const API_URL = 'http://localhost:8080/';
 
 class FileService {
-  getFile(projectId, path, version) {
-    return axios.get(API_URL + 'projects/' + projectId + '/files/' + path + version, { headers: authHeader() });
+  getFile(projectId, path) {
+    return axios.get(API_URL + 'projects/' + projectId + '/files/' + path, { headers: authHeader() });
   }
 
-  getFiles(projectId, version) {
-    return axios.get(API_URL + 'projects/' + projectId + '/files' + version, { headers: authHeader() });
+  getFiles(projectId) {
+    return axios.get(API_URL + 'projects/' + projectId + '/files', { headers: authHeader() });
   }
 
   uploadFile(projectId, data) {

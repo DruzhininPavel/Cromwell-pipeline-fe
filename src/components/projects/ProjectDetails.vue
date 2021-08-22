@@ -11,7 +11,7 @@
             <p class="card-text">Visibility: {{ project.visibility }}</p>
             <router-link :to="'/projects/' + project.projectId + '/files'" class="btn btn-primary btn-block">Files</router-link>
             <router-link :to="'/projects/' + project.projectId + '/configuration'" class="btn btn-primary btn-block">Configuration</router-link>
-            <router-link :to="'/projects/' + project.projectId + '/runs'" class="btn btn-primary btn-block">Runs</router-link>
+            <router-link :to="'/projects/' + project.projectId + '/runs'" class="btn btn-danger btn-block">Runs</router-link>
             <router-link :to="'/projects/' + project.projectId + '/edit'" class="btn btn-primary btn-block">Rename</router-link>
             <button @click="handleDeactivateProject" class="btn btn-secondary btn-block" :disabled="loading"><span
                             v-show="loading"
@@ -31,29 +31,22 @@ export default {
     name: 'ProjectDetails',
     data() {
         return {
-            project: {}
+            project: null
         };
     },
-    beforeCreate() {
-        ProjectService.getProjectContent(this.$route.params.projectId).then(
-            (response) => {
-                this.project = response.data;
-            },
-            (error) => {
-                this.project =
-                (error.response &&
-                    error.response.data &&
-                    error.response.data.message) ||
-                error.message ||
-                error.toString();
-            }
-        );
+    mounted() {
+        this.updateProject()
+    },
+    watch: {
+        $route(to, from){
+            if(to.params.projectId !== from.params.projectId) this.updateProject()
+        }
     },
     methods: {
-        handleDeactivateProject(projectId) {
+        handleDeactivateProject() {
             this.loading = true;
             if(confirm("Do you really want to deactivate project?")){
-                ProjectService.deleteProject(projectId).then(
+                ProjectService.deleteProject(this.$route.params.projectId).then(
                     () => {
                         this.$router.push("/projects");
                     },
@@ -68,6 +61,21 @@ export default {
                 );
             }
             this.loading = false;
+        },
+        updateProject() {
+            ProjectService.getProjectContent(this.$route.params.projectId).then(
+            (response) => {
+                this.project = response.data;
+            },
+            (error) => {
+                this.project =
+                (error.response &&
+                    error.response.data &&
+                    error.response.data.message) ||
+                error.message ||
+                error.toString();
+            }
+        );
         }
     },
 };

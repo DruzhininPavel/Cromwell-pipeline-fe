@@ -1,49 +1,14 @@
 <template>
-  <div class="container">
-    <header class="jumbotron">
-      <div v-if="Array.isArray(content)">
-        <div v-for="project in content" :key="project">
-          <Project :project="project"></Project>
-        </div>  
-      </div>
-      <div v-else> 
-        <p>Projects not found </p>
-      </div>
-    </header>
-      <router-link to="/projects/add" class="btn btn-primary btn-block" >
-        <span>Add Project</span>
-      </router-link>
-  </div>
+    <form>
+        <div class="form-group">
+            <label for="exampleFormControlInput1">Project name</label>
+            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="HelloWorldProject">
+        </div>
+    </form>
 </template>
 
 <script>
-import ProjectService from "../services/project.service";
-import Project from "./projects/Project"
-
 export default {
-  name: "BoardProjects",
-  components: {
-    Project
-  },
-  data() {
-    return {
-      content: null,
-    };
-  },
-  mounted() {
-    ProjectService.getProjectsContent().then(
-      (response) => {
-        this.content = response.data;
-      },
-      (error) => {
-        this.content =
-          (error.response &&
-            error.response.data &&
-            error.response.data.message) ||
-          error.message ||
-          error.toString();
-      }
-    );
-  },
-};
+
+}
 </script>

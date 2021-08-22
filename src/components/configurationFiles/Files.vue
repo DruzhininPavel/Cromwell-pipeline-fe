@@ -1,13 +1,50 @@
 <template>
-    
+    <div class="container">
+        <div class="row justify-content-md-center">
+            <div class="card card-container">
+                <h5 class="card-title">Files</h5>
+                <div v-if="Array.isArray(files)">
+                    <div v-for="file in files" :key="file">
+                    <FilesItem :file="file"></FilesItem>
+                    </div>  
+                </div>
+                <div v-else> 
+                    <p>Files not found </p>
+                </div>
+            </div>
+            <router-link :to="'/projects/' + projectId + '/files/upload'" class="btn btn-primary btn-block">Upload new file</router-link>
+        </div>
+    </div>
 </template>
 
 <script>
-import { defineComponent } from '@vue/composition-api'
-
-export default defineComponent({
-    setup() {
-        
+import FileService from "../../services/file.service"
+import FilesItem from "./FilesItem.vue"
+export default {
+    name: "ProjectFiles",
+    components: {
+        FilesItem,
     },
-})
+    data() {
+        return {
+            loading: false,
+            files: null,
+        };
+    },
+    mounted() {
+        FileService.getFiles(this.$route.params.projectId).then(
+        (response) => {
+            this.files = response.data;
+        },
+        (error) => {
+            this.files =
+            (error.response &&
+                error.response.data &&
+                error.response.data.message) ||
+            error.message ||
+            error.toString();
+        }
+        );
+    }
+};
 </script>

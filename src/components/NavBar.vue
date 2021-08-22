@@ -8,9 +8,6 @@
           </router-link>
         </li>
         <li class="nav-item">
-          <router-link v-if="currentUser" to="/projects" class="nav-link">Projects Board</router-link>
-        </li>
-        <li class="nav-item">
           <router-link v-if="currentUser" to="/users" class="nav-link">Users</router-link>
         </li>
         <li class="nav-item">
