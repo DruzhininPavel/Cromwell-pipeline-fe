@@ -21,7 +21,7 @@
                 <p>Runs not found </p>
             </div>
         </table>
-            <a @click="handleAddNewRun" class="btn btn-primary col-3 mr-4">Add new run</a>
+            <a @click="handleAddNewRun" class="btn btn-primary col-3 mr-4">Start new run</a>
             <router-link class="btn btn-danger col-3" :to="'/projects/' + projectId">Back</router-link>
     </div>
 </template>

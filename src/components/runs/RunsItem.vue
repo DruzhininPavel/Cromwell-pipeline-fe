@@ -53,7 +53,9 @@ export default {
                 results: "You are cucumber!"
             }
             RunsService.updateRun(this.run.projectId, this.run.runId, data).then(
-                this.$router.push('/projects/' + this.run.projectId + '/runs/')
+                () => {
+                    this.$router.update(true)
+                }
             );
         }
     }

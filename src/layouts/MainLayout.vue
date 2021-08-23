@@ -3,7 +3,7 @@
     <NavBar/>
     <div class="row">
         <div class="col-4">
-            <h1 class="dicplay-4">Projects</h1>
+            <h1 class="dicplay-4">Your projects</h1>
             <NavProjects/>
         </div>
         <div class="col-8">
