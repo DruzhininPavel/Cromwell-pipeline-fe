@@ -13,7 +13,7 @@ class UserService {
   }
 
   updateProfile(user) {
-    let data = {
+    const data = {
       firstName: user.firstName,
       lastName: user.lastName,
       email: user.email

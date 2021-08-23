@@ -7,7 +7,7 @@
                     <h6 class="card-subtitle mb-2 text-muted">Project ID: {{ configuration.projectId }}</h6>
                     <p class="card-text">Active: {{ configuration.active }}</p>
                     <p class="card-text">Version: {{ configuration.version }}</p>
-                    <p class="card-text">File: {{ configuration.projectFileConfigurations[0].path }}</p>
+                    <p class="card-text">File: {{ configuration.projectFileConfigurations[configuration.projectFileConfigurations.length-1].path }}</p>
                     <p class="card-text">Inputs: 
                         <table class="table">
                             <thead>
@@ -18,7 +18,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr v-for="input in configuration.projectFileConfigurations[0].inputs" :key="input">
+                                <tr v-for="input in configuration.projectFileConfigurations[configuration.projectFileConfigurations.length-1].inputs" :key="input">
                                     <th scope="row">{{ input.name }}</th>
                                     <td>{{ input.typedValue._type }}</td>
                                     <td>{{ input.typedValue.value }}</td>

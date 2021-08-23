@@ -113,7 +113,7 @@ export default {
             this.loading = true;
             this.success = '';
             this.message = '';
-            let uploadRequest = {
+            const uploadRequest = {
                 projectFile: {
                     path: data.path,
                     content: data.content
@@ -138,7 +138,7 @@ export default {
             );
         },
         handleBuildConfig() {
-            let loadedFile = JSON.parse(localStorage.getItem("lastUploadedFile"));
+            const loadedFile = JSON.parse(localStorage.getItem("lastUploadedFile"));
 
             FileService.buildConfiguration(this.projectId, loadedFile.projectFile.path).then(
                 (response) => {
