@@ -1,20 +1,28 @@
 <template>
     <div class="container">
-        <div class="row justify-content-md-center">
-            <div class="card card-container">
-                <h5 class="card-title">Runs</h5>
-                <div v-if="Array.isArray(runs)">
-                    <div v-for="run in runs" :key="run">
+        <h5 class="display-4">Runs</h5>
+        <table class="table">
+            <thead>
+                <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Version</th>
+                <th scope="col">Status</th>
+                <th scope="col">Result</th>
+                <th scope="col">Time start</th>
+                <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody v-if="Array.isArray(runs)">
+                <tr v-for="run in runs" :key="run">
                     <RunsItem :run="run"></RunsItem>
-                    </div>  
-                </div>
-                <div v-else> 
-                    <p>Runs not found </p>
-                </div>
+                </tr>  
+            </tbody>
+            <div v-else> 
+                <p>Runs not found </p>
             </div>
-            <router-link :to="'/projects/' + projectId + '/runs/add'" class="btn btn-primary btn-block">Add new run</router-link>
-            <router-link class="btn btn-danger btn-block" :to="'/projects/' + projectId">Back</router-link>
-        </div>
+        </table>
+            <a @click="handleAddNewRun" class="btn btn-primary col-3 mr-4">Add new run</a>
+            <router-link class="btn btn-danger col-3" :to="'/projects/' + projectId">Back</router-link>
     </div>
 </template>
 <script>
@@ -32,20 +40,45 @@ export default {
         }
     },
     mounted() {
-        RunsService.getRuns().then(
-        (response) => {
-            this.runs = response.data;
-        },
-        (error) => {
-            this.runs =
-            (error.response &&
-                error.response.data &&
-                error.response.data.message) ||
-            error.message ||
-            error.toString();
-        }
-        );
+        this.handleGetRuns();
     },
+    methods: {
+        handleAddNewRun() {
+            const data = {
+                projectId: this.projectId,
+                projectVersion: "v0.0.1",
+                results: "No results"
+            }
+            RunsService.addRun(this.projectId, data).then(
+                () => {
+                    this.handleGetRuns();
+                },
+                (error) => {
+                    this.runs =
+                    (error.response &&
+                        error.response.data &&
+                        error.response.data.message) ||
+                    error.message ||
+                    error.toString();
+                }
+            );
+        },
+        handleGetRuns() {
+            RunsService.getRuns(this.projectId).then(
+            (response) => {
+                this.runs = response.data;
+            },
+            (error) => {
+                this.runs =
+                (error.response &&
+                    error.response.data &&
+                    error.response.data.message) ||
+                error.message ||
+                error.toString();
+            }
+            );
+        }
+    }
     
 }
 </script>

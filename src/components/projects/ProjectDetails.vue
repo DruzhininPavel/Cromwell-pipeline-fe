@@ -9,11 +9,11 @@
             <p class="card-text">RepositoryId: {{ project.repositoryId }}</p>
             <p class="card-text">Version: {{ project.version }}</p>
             <p class="card-text">Visibility: {{ project.visibility }}</p>
-            <router-link :to="'/projects/' + project.projectId + '/files'" class="btn btn-primary btn-block">Files</router-link>
-            <router-link :to="'/projects/' + project.projectId + '/configuration'" class="btn btn-primary btn-block">Configuration</router-link>
-            <router-link :to="'/projects/' + project.projectId + '/runs'" class="btn btn-danger btn-block">Runs</router-link>
-            <router-link :to="'/projects/' + project.projectId + '/edit'" class="btn btn-primary btn-block">Rename</router-link>
-            <button @click="handleDeactivateProject" class="btn btn-secondary btn-block" :disabled="loading">
+            <router-link :to="'/projects/' + project.projectId + '/files'" class="btn btn-primary col-2 mr-4">Files</router-link>
+            <router-link :to="'/projects/' + project.projectId + '/configuration'" class="btn btn-primary col-2 mr-4">Configuration</router-link>
+            <router-link :to="'/projects/' + project.projectId + '/runs'" class="btn btn-danger col-2 mr-4">Runs</router-link>
+            <router-link :to="'/projects/' + project.projectId + '/edit'" class="btn btn-primary col-2 mr-4">Rename</router-link>
+            <button @click="handleDeactivateProject" class="btn btn-secondary col-2" :disabled="loading">
                 <span
                     v-show="loading"
                     class="spinner-border spinner-border-sm"

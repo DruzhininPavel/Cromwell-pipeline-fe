@@ -9,21 +9,21 @@
             </div>
         </div>
 
-        <a @click="handleBuildConfig" class="btn btn-primary btn-block" :disabled="loading">
+        <a @click="handleBuildConfig" class="btn btn-primary col-3 mr-4" :disabled="loading">
             <span
                 v-show="loading"
                 class="spinner-border spinner-border-sm"
             ></span>
             <span>Build Configuration</span>
         </a>
-        <a @click="handleDeleteFile" class="btn btn-secondary btn-block" :disabled="loading">
+        <a @click="handleDeleteFile" class="btn btn-secondary col-3 mr-4" :disabled="loading">
             <span
                 v-show="loading"
                 class="spinner-border spinner-border-sm"
             ></span>
             <span>Delete file</span>
         </a>
-        <router-link class="btn btn-danger btn-block" :to="'/projects/' + projectId">Back</router-link>
+        <router-link class="btn btn-danger col-3" :to="'/projects/' + projectId">Back</router-link>
 
     </div>
 </template>

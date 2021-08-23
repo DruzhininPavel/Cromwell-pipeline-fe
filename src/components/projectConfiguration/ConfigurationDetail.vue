@@ -7,15 +7,34 @@
                     <h6 class="card-subtitle mb-2 text-muted">Project ID: {{ configuration.projectId }}</h6>
                     <p class="card-text">Active: {{ configuration.active }}</p>
                     <p class="card-text">Version: {{ configuration.version }}</p>
-                    <p class="card-text">Data: {{ configuration.projectFileConfigurations }}</p>
+                    <p class="card-text">File: {{ configuration.projectFileConfigurations[0].path }}</p>
+                    <p class="card-text">Inputs: 
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Type</th>
+                                    <th scope="col">Value</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr v-for="input in configuration.projectFileConfigurations[0].inputs" :key="input">
+                                    <th scope="row">{{ input.name }}</th>
+                                    <td>{{ input.typedValue._type }}</td>
+                                    <td>{{ input.typedValue.value }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </p>
                     <router-link :to="'/projects/' + configuration.projectId + '/configuration/edit'" class="btn btn-primary btn-block">Edit</router-link>
                     <a @click="hanleDeactivateConfiguration" class="btn btn-secondary btn-block" :disabled="loading">Deactivate</a>
                 </div>
             </div>
         </div>
     </div>
-    <router-link :to="'/projects/' + projectId + '/files/upload'" class="btn btn-primary btn-block">Add Configuration</router-link>
-    <router-link class="btn btn-danger btn-block" :to="'/projects/' + projectId">Back</router-link>
+    <hr>
+    <router-link :to="'/projects/' + projectId + '/files/upload'" class="btn btn-primary col-3 mr-4">Add Configuration</router-link>
+    <router-link class="btn btn-danger col-3" :to="'/projects/' + projectId">Back</router-link>
 </template>
 
 <script>
