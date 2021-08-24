@@ -25,8 +25,14 @@
                 v-show="loading"
                 class="spinner-border spinner-border-sm"
               ></span>
-              <span>Login</span>
+              <span>Sign In</span>
             </button>
+          </div>
+
+          <div class="form-group">
+            <router-link to="/register">
+              <span>Register</span>
+            </router-link>
           </div>
 
           <div class="form-group">

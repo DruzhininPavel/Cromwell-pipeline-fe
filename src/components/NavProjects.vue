@@ -19,24 +19,13 @@ export default {
   },
   watch: {
     $route(to){
+      this.getProjects()
       if(to.params.projectId) this.projectId = to.params.projectId;
       else this.projectId = null;
     }
   },
   mounted() {
-    ProjectService.getProjectsContent().then(
-      (response) => {
-        this.projects = response.data;
-      },
-      (error) => {
-        this.projects =
-          (error.response &&
-            error.response.data &&
-            error.response.data.message) ||
-          error.message ||
-          error.toString();
-      }
-    );
+    this.getProjects()
   },
   methods: {
     isActive(id) {
@@ -45,7 +34,21 @@ export default {
       } else {
         return "";
       }
-      
+    },
+    getProjects() {
+      ProjectService.getProjectsContent().then(
+        (response) => {
+          this.projects = response.data;
+        },
+        (error) => {
+          this.projects =
+            (error.response &&
+              error.response.data &&
+              error.response.data.message) ||
+            error.message ||
+            error.toString();
+        }
+      );
     }
   }
 };

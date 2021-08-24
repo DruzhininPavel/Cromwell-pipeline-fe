@@ -57,8 +57,8 @@ export default {
             this.loading = true;
 
             ProjectService.addProject(data).then(
-                () => {
-                    this.$router.push("/projects");
+                (response) => {
+                    this.$router.push("/projects/" + response.data.projectId);
                 },
                 (error) => {
                     this.loading = false;

@@ -56,8 +56,8 @@ export default {
             this.loading = true;
             this.message = '';
             for(const [key, value] of Object.entries(this.buildedConfig.projectFileConfigurations[0].inputs)) {
-                let path = value.name.split(".");
-                let inputValue = data[path[0]][path[1]][path[2]];
+                const path = value.name.split(".");
+                const inputValue = data[path[0]][path[1]][path[2]];
                 this.buildedConfig.projectFileConfigurations[0].inputs[key].typedValue.value = inputValue;
             }
             ConfigurationService.addConfiguration(this.projectId, this.buildedConfig).then(

@@ -30,7 +30,7 @@ export default {
     }
   },
   beforeCreate() {
-    let user = JSON.parse(localStorage.getItem('user'))
+    const user = JSON.parse(localStorage.getItem('user'))
     UserService.getUserProfile(user.email).then(
       (response) => {
           this.userData = response.data;

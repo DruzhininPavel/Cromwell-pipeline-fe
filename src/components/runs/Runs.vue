@@ -67,6 +67,21 @@ export default {
             RunsService.getRuns(this.projectId).then(
             (response) => {
                 this.runs = response.data;
+                if(response.data.length > 0 ) {
+                    console.log(response.data)
+                    for(const key in response.data) {
+                        response.data[key].update = () => {
+                            const data = {
+                                status: "done",
+                                timeStart: response.data[key].timeStart,
+                                results: "You are cucumber!"
+                            }
+                            RunsService.updateRun(response.data[key].projectId, response.data[key].runId, data).then( () => { this.handleGetRuns(); } );
+                        }
+                        
+                        console.log(response.data[key])
+                    }
+                }
             },
             (error) => {
                 this.runs =
@@ -77,8 +92,19 @@ export default {
                 error.toString();
             }
             );
+        },
+        handleUpdateRun(projectId, runId) {
+            const data = {
+                status: "done",
+                timeStart: this.run.timeStart,
+                results: "You are cucumber!"
+            }
+            RunsService.updateRun(projectId, runId, data).then(
+                () => {
+                    this.handleGetRuns();
+                }
+            );
         }
     }
-    
 }
 </script>
